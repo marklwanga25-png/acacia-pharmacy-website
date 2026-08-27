@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acacia Pharmacy Limited</title>
+  <!-- FontAwesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Global Styles */
+    :root {
+      --primary-green: #0a5c36;
+      --accent-green: #14804b;
+      --light-green: #eaf4ef;
+      --dark-bg: #052a18;
+      --text-dark: #222222;
+      --text-muted: #555555;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #87D8C3;
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    /* Header & Navigation */
+    header {
+      background: #87D8C3;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 5%;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      width: 50px;
+      height: auto;
+      border-radius: 5%;
+    }
+
+    .logo-icon {
+      font-size: 2.2rem;
+      color: var(--primary-green);
+    }
+
+    .logo-text h1 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #111;
+      line-height: 1;
+      letter-spacing: 0.5px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+
+    nav a.active, nav a:hover {
+      color: var(--primary-green);
+      border-bottom: 2px solid var(--primary-green);
+      padding-bottom: 6px;
+    }
+
+    .whatsapp-btn {
+      background-color: var(--primary-green);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      transition: background 0.3s;
+    }
+
+    .whatsapp-btn:hover {
+      background-color: var(--accent-green);
+    }
+
+    /* Hero Section / Slider */
+    .hero-container {
+      position: relative;
+      width: 90%;
+      max-width: 1300px;
+      height: 550px;
+      margin: 20px auto;
+      border-radius: 20px;
+      overflow: hidden;
+      background-color: #eee;
+    }
+
+    .slider {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    /* Glassmorphism/Overlay Box for Hero Text */
+    .slide-content {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(8px);
+      padding: 40px;
+      margin-left: 6%;
+      max-width: 580px;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .slide-content h2 {
+      font-size: 2.2rem;
+      color: var(--primary-green);
+      line-height: 1.2;
+      margin-bottom: 12px;
+      font-weight: 800;
+    }
+
+    .slide-content h3 {
+      font-size: 1.1rem;
+      color: var(--accent-green);
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .slide-content p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      margin-top: 10px;
+      background-color: var(--primary-green);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 0.3s;
+    }
+
+    .cta-btn:hover {
+      background-color: var(--accent-green);
+    }
+
+    /* Slider Controls */
+    .prev-btn, .next-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 45px;
+      height: 45px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+      cursor: pointer;
+      z-index: 10;
+      border: none;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .prev-btn { left: 20px; }
+    .next-btn { right: 20px; }
+
+    .prev-btn:hover, .next-btn:hover {
+      background: var(--light-green);
+      color: var(--primary-green);
+    }
+
+    .dots-container {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 10;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.6);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .dot.active {
+      background: var(--accent-green);
+      width: 24px;
+      border-radius: 10px;
+    }
+
+    /* Footer Section */
+    footer {
+      background-color: var(--dark-bg);
+      color: #87D8C3;
+      width: 90%;
+      max-width: 1300px;
+      margin: 30px auto 10px;
+      border-radius: 20px;
+      padding: 50px 40px 20px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr 0.8fr 1fr;
+      gap: 30px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 40px;
+    }
+
+    .footer-col h4 {
+      font-size: 1rem;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #87D8C3;
+    }
+
+    .footer-about p {
+      font-size: 0.85rem;
+      color: #87D8C3;
+      margin: 15px 0 20px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .social-icons a {
+      width: 35px;
+      height: 35px;
+      background: #fffff;
+      color: var(--dark-bg);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .location-item, .service-item, .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 15px;
+      font-size: 0.85rem;
+      color: #e0e0e0;
+    }
+
+    .icon-box {
+      background: var(--primary-green);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-col ul a {
+      color: #e0e0e0;
+      text-decoration: none;
+      font-size: 0.88rem;
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 20px;
+      font-size: 0.8rem;
+      color: #888;
+    }
+
+    .copyright span {
+      color: var(--accent-green);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="logo-container">
+      <img class="logo" src="logo.jpeg" alt="Acacia Pharmacy Logo">
+      <div class="logo-text">
+        <h1>ACACIA PHARMACY</h1>
+        <span>Your health, Our business</span>
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="About.html">About Us</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="Contact.html">Contact Us</a></li>
+      </ul>
+    </nav>
+    <a href="https://wa.me/256784760683" class="whatsapp-btn">
+      <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+    </a>
+  </header>
+
+  <!-- Hero Slider -->
+  <section class="hero-container">
+    <div class="slider">
+      
+      <!-- Slide 1 -->
+      <div class="slide active" style="background-image: url('a.jpg');">
+        <div class="slide-content">
+          <h2>Welcome to Acacia Pharmacy Limited</h2>
+          <h3>Where your health is personal to us.</h3>
+          <p>At Acacia Pharmacy, we believe you deserve more than just medicine—you deserve to be heard, understood, and genuinely cared for.</p>
+          <p>We walk with you through every step of your health journey, offering trusted medicines, professional advice, and compassionate care tailored to your needs.</p>
+          <p>Whether visiting us for yourself or someone you love, expect a warm welcome, honest guidance, and care you can trust.</p>
+          <a href="Contact.html" class="cta-btn"><i class="fa-solid fa-location-dot"></i> Visit Our Branches</a>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="slide" style="background-image: url('a.jpg');">
+        <div class="slide-content">
+          <h2>Your Health Is Our Priority</h2>
+          <p>Quality medicines, professional care, and trusted advice for you and your family.</p>
+          <a href="Contact.html" class="cta-btn"><i class="fa-solid fa-location-dot"></i> Visit Our Branches</a>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="slide" style="background-image: url('b.jpg');">
+        <div class="slide-content">
+          <h2>Comprehensive Healthcare Services</h2>
+          <p>From prescription medicines to health consultations and convenient home delivery services.</p>
+          <a href="Contact.html" class="cta-btn"><i class="fa-solid fa-location-dot"></i> Visit Our Branches</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Navigation Buttons -->
+    <button class="prev-btn" onclick="moveSlide(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="next-btn" onclick="moveSlide(1)"><i class="fa-solid fa-chevron-right"></i></button>
+
+    <!-- Slide Dots -->
+    <div class="dots-container">
+      <span class="dot active" onclick="currentSlide(0)"></span>
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="footer-grid">
+      
+      <div class="footer-col footer-about">
+        <div class="logo-container" style="filter: brightness(0) invert(1);">
+          <i class="fa-solid fa-leaf logo-icon"></i>
+          <div class="logo-text">
+            <h1 style="color:#fff;">ACACIA PHARMACY</h1>
+            <span style="color:#ddd;">Your health, Our business</span>
+          </div>
+        </div>
+        <p>We are committed to providing quality medicines and excellent healthcare services.</p>
+        <div class="social-icons">
+          <a href="https://wa.me/256784760683"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col" id="locations">
+        <h4>OUR LOCATIONS</h4>
+        <div class="location-item">
+          <div class="icon-box"><i class="fa-solid fa-location-dot"></i></div>
+          <div>
+            <strong>Sentema Road Shell Petrol station Lugala</strong><br>
+            Kampala, Uganda<br>
+            0700186739
+          </div>
+        </div>
+        <div class="location-item">
+          <div class="icon-box"><i class="fa-solid fa-location-dot"></i></div>
+          <div>
+            <strong>Theater Labonita building</strong><br>
+            Colville Street<br>
+            07707464421
+          </div>
+        </div>
+        <div class="location-item">
+          <div class="icon-box"><i class="fa-solid fa-location-dot"></i></div>
+          <div>
+            <strong>Kyambogo</strong><br>
+            Kyambogo Road shell Petrol station opposite National Council Of Higher Education<br>
+            0700186 739
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>OUR SERVICES</h4>
+        <div class="service-item"><i class="fa-solid fa-circle-check" style="color:var(--accent-green)"></i> Prescription Medicines</div>
+        <div class="service-item"><i class="fa-solid fa-circle-check" style="color:var(--accent-green)"></i> Over The Counter Medicines</div>
+        <div class="service-item"><i class="fa-solid fa-circle-check" style="color:var(--accent-green)"></i> Vitamins & Supplements</div>
+        <div class="service-item"><i class="fa-solid fa-circle-check" style="color:var(--accent-green)"></i> Personal Care Products</div>
+        <div class="service-item"><i class="fa-solid fa-circle-check" style="color:var(--accent-green)"></i> Baby & Child Care</div>
+        <div class="service-item"><i class="fa-solid fa-circle-check" style="color:var(--accent-green)"></i> Health Consultations</div>
+        <div class="service-item"><i class="fa-solid fa-circle-check" style="color:var(--accent-green)"></i> Home Delivery Services</div>
+      </div>
+
+      <div class="footer-col">
+        <h4>QUICK LINKS</h4>
+        <ul>
+          <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Home</a></li>
+          <li><a href="About.html"><i class="fa-solid fa-chevron-right"></i> About Us</a></li>
+          <li><a href="gallery.html"><i class="fa-solid fa-chevron-right"></i> Gallery</a></li>
+          <li><a href="Contact.html"><i class="fa-solid fa-chevron-right"></i> Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>CONTACT US</h4>
+        <div class="contact-item">
+          <div class="icon-box"><i class="fa-solid fa-phone"></i></div>
+          <div>0770 746 421</div>
+        </div>
+        <div class="contact-item">
+          <div class="icon-box"><i class="fa-brands fa-whatsapp"></i></div>
+          <div>07844760683</div>
+        </div>
+        <div class="contact-item">
+          <div class="icon-box"><i class="fa-solid fa-envelope"></i></div>
+          <div>sales@acaciapharmacyug.com.ug</div>
+        </div>
+        <div class="contact-item">
+          <div class="icon-box"><i class="fa-solid fa-clock"></i></div>
+          <div>Open: Mon - Sun<br>7:00am - Midnight</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      &copy; 2026 <span>ACACIA PHARMACY</span>. All Rights Reserved.
+    </div>
+  </footer>
+
+  <!-- Simple JavaScript Slider Logic -->
+  <script>
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+
+    function showSlide(index) {
+      if (index >= slides.length) slideIndex = 0;
+      if (index < 0) slideIndex = slides.length - 1;
+
+      slides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        dots[i].classList.remove('active');
+      });
+
+      slides[slideIndex].classList.add('active');
+      dots[slideIndex].classList.add('active');
+    }
+
+    function moveSlide(step) {
+      slideIndex += step;
+      showSlide(slideIndex);
+    }
+
+    function currentSlide(index) {
+      slideIndex = index;
+      showSlide(slideIndex);
+    }
+
+    // Auto Play Slideshow every 6 seconds
+    setInterval(() => {
+      slideIndex++;
+      showSlide(slideIndex);
+    }, 6000);
+  </script>
+</body>
+</html>
