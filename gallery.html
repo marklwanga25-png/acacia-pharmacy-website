@@ -147,10 +147,11 @@
         }
 
         /* ==========================================================================
-           4. GALLERY MEDIA GRID
+           4. GALLERY MEDIA GRID (UPDATED FOR 8 ITEMS)
            ========================================================================== */
         .gallery-grid {
             display: grid;
+            /* Using auto-fill grid rows to perfectly distribute 8 items seamlessly */
             grid-template-columns: repeat(3, 1fr);
             gap: 28px;
             margin-bottom: 80px;
@@ -273,7 +274,6 @@
         <div class="container navbar">
             <div class="logo">
                 <div class="logo-icon"></div>
-                <!-- Clean styling matching the minimal green brand mark -->
             </div>
             <nav class="nav-links">
                 <a href="#home">Home</a>
@@ -294,7 +294,7 @@
         </div>
     </section>
 
-    <!-- SIX CARD INTERACTIVE PHOTO CONTAINER -->
+    <!-- EIGHT CARD INTERACTIVE PHOTO CONTAINER -->
     <main class="container">
         <div class="gallery-grid">
             
@@ -312,5 +312,3 @@
                     <img src="https://unsplash.com" alt="Product shelves display units">
                 </div>
                 <div class="card-title">Product Showcase</div>
-            </div>
-
