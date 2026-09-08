@@ -3,47 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Gallery | Acacia Pharmacy</title>
-
-    <meta name="description"
-          content="Explore Acacia Pharmacy branches, facilities, healthcare services and pharmacy environment.">
-
+    <title>Our Gallery | Acacia Pharmacy</title>
+    <meta name="description" content="Explore our modern facilities, dispensaries, consultation areas, and compounding labs.">
+    
     <style>
-
-        /* =====================================
-           ACACIA PHARMACY
-           GALLERY PAGE
-           ICE PLANT GREEN THEME
-        ====================================== */
-
+        /* ==========================================================================
+           1. CORE DESIGN TOKENS (ICE-GREEN PALETTE)
+           ========================================================================== */
         :root {
-            --ice-green: #5fc3a0;
-            --ice-green-dark: #329b78;
-            --ice-green-light: #e9f8f2;
-            --ice-green-pale: #f4fbf8;
-            --dark: #17251f;
-            --text: #52605a;
+            --primary-ice: #5fc3a0;
+            --primary-dark: #329b78;
+            --primary-gradient: linear-gradient(135deg, #e1f5ed 0%, #aae3cd 100%);
+            --bg-light: #f4fbf8;
+            --text-main: #17251f;
+            --text-muted: #52605a;
             --white: #ffffff;
-            --border: #e2eee9;
-            --shadow: 0 10px 35px rgba(40, 100, 80, 0.08);
+            --card-border: #e2eee9;
+            --shadow-subtle: 0 10px 30px rgba(40, 100, 80, 0.06);
+            --radius-main: 16px;
+            --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
+        /* Base Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            color: var(--dark);
-            background: white;
-            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-main);
+            background-color: var(--white);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
         }
 
         a {
@@ -51,52 +44,27 @@
             color: inherit;
         }
 
-        img {
-            width: 100%;
-            display: block;
-        }
-
         .container {
-            width: min(1120px, 92%);
-            margin: auto;
+            width: min(1200px, 92%);
+            margin: 0 auto;
         }
 
-
-        /* =====================================
-           TOP BAR
-        ====================================== */
-
-        .top-bar {
-            background: var(--ice-green-dark);
-            color: white;
-            padding: 8px 0;
-            font-size: 13px;
-        }
-
-        .top-content {
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-
-        /* =====================================
-           NAVIGATION
-        ====================================== */
-
+        /* ==========================================================================
+           2. HEADER & NAVIGATION
+           ========================================================================== */
         header {
-            background: rgba(255,255,255,0.97);
-            border-bottom: 1px solid var(--border);
+            background-color: var(--white);
+            border-bottom: 1px solid rgba(95, 195, 160, 0.15);
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 100;
         }
 
         .navbar {
-            min-height: 78px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            height: 80px;
         }
 
         .logo {
@@ -105,29 +73,14 @@
             gap: 10px;
         }
 
+        /* Hand-crafted vector leaf emblem directly inside the stylesheet */
         .logo-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 5px;
-            background: var(--ice-green);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 25px;
-            font-weight: bold;
-        }
-
-        .logo-text h1 {
-            font-size: 22px;
-            letter-spacing: 1px;
-            line-height: 1.1;
-        }
-
-        .logo-text span {
-            font-size: 11px;
-            letter-spacing: 3px;
-            color: var(--text);
+            width: 38px;
+            height: 38px;
+            background-color: transparent;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' viewBox='0 0 24 24' fill='none' stroke='%23329b78' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.5 1 9.8a7 7 0 0 1-9 8.2z'/%3E%3Cpath d='M9 12c2.5 1 3.5 2.5 4.5 6'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
         }
 
         .nav-links {
@@ -138,276 +91,226 @@
 
         .nav-links a {
             font-size: 15px;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-dark);
+        }
+
+        .btn-contact {
+            background-color: var(--primary-ice);
+            color: var(--white) !important;
+            padding: 10px 24px;
+            border-radius: 30px;
             font-weight: 600;
-            color: var(--dark);
-            transition: 0.3s;
         }
 
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--ice-green-dark);
+        .btn-contact:hover {
+            background-color: var(--primary-dark);
         }
 
-        .whatsapp-btn {
-            background: var(--ice-green);
-            color: white !important;
-            padding: 12px 20px;
-            border-radius: 10px;
-            font-weight: bold !important;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .whatsapp-btn:hover {
-            background: var(--ice-green-dark) !important;
-        }
-
-        .menu-btn {
+        .mobile-menu-toggle {
             display: none;
-            border: none;
             background: none;
-            font-size: 28px;
+            border: none;
+            font-size: 24px;
             cursor: pointer;
+            color: var(--primary-dark);
         }
 
-
-        /* =====================================
-           PAGE HERO
-        ====================================== */
-
-        .page-hero {
-            background:
-                radial-gradient(
-                    circle at 85% 20%,
-                    #dff6ec 0,
-                    transparent 32%
-                ),
-                linear-gradient(
-                    135deg,
-                    #f4fbf8,
-                    #ffffff
-                );
-
-            padding: 80px 0;
+        /* ==========================================================================
+           3. HERO PROFILE ACCENT
+           ========================================================================== */
+        .hero-banner {
+            background: var(--primary-gradient);
+            padding: 60px 0;
             text-align: center;
+            margin-bottom: 50px;
         }
 
-        .page-hero span {
-            color: var(--ice-green-dark);
-            font-weight: bold;
+        .hero-banner h1 {
+            font-size: clamp(32px, 4vw, 44px);
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 13px;
+            margin-bottom: 8px;
         }
 
-        .page-hero h2 {
-            font-size: clamp(40px, 6vw, 58px);
-            margin: 10px 0;
+        .hero-banner p {
+            font-size: clamp(15px, 2vw, 18px);
+            color: var(--text-muted);
+            font-weight: 400;
         }
 
-        .page-hero p {
-            color: var(--text);
-            max-width: 650px;
-            margin: auto;
-            font-size: 17px;
-        }
-
-
-        /* =====================================
-           GALLERY INTRO
-        ====================================== */
-
-        .gallery-intro {
-            padding: 65px 0 35px;
-            text-align: center;
-        }
-
-        .gallery-intro h2 {
-            font-size: 34px;
-            margin-bottom: 10px;
-        }
-
-        .gallery-intro p {
-            color: var(--text);
-            max-width: 650px;
-            margin: auto;
-        }
-
-
-        /* =====================================
-           GALLERY
-        ====================================== */
-
-        .gallery-section {
-            padding: 20px 0 85px;
-        }
-
+        /* ==========================================================================
+           4. GALLERY MEDIA GRID
+           ========================================================================== */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin-bottom: 80px;
+        }
+
+        .gallery-card {
+            background-color: var(--white);
+            border-radius: var(--radius-main);
+            border: 1px solid var(--card-border);
+            overflow: hidden;
+            box-shadow: var(--shadow-subtle);
+            transition: var(--transition-smooth);
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(40, 100, 80, 0.12);
+            border-color: var(--primary-ice);
+        }
+
+        .card-image-wrapper {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            background-color: var(--bg-light);
+        }
+
+        .card-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .gallery-card:hover .card-image-wrapper img {
+            transform: scale(1.04);
+        }
+
+        .card-title {
+            padding: 18px 15px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-main);
+            border-top: 1px solid var(--card-border);
+            background-color: var(--white);
+        }
+
+        /* ==========================================================================
+           5. SYSTEM FOOTER
+           ========================================================================== */
+        footer {
+            background-color: var(--bg-light);
+            border-top: 1px solid var(--card-border);
+            padding: 40px 0;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
             gap: 20px;
         }
 
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 18px;
-            background: var(--ice-green-light);
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(40,100,80,0.06);
+        .footer-links {
+            display: flex;
+            gap: 40px;
         }
 
-        .gallery-item img {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
-            transition: transform 0.5s ease;
+        .footer-links a:hover {
+            color: var(--primary-dark);
         }
 
-        .gallery-item:hover img {
-            transform: scale(1.07);
-        }
-
-        .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 35px 18px 18px;
-
-            background:
-                linear-gradient(
-                    transparent,
-                    rgba(0,0,0,0.75)
-                );
-
-            color: white;
-        }
-
-        .gallery-caption h3 {
-            font-size: 17px;
-            margin-bottom: 3px;
-        }
-
-        .gallery-caption p {
-            font-size: 12px;
-            opacity: 0.9;
-        }
-
-
-        /* =====================================
-           FEATURED IMAGE
-        ====================================== */
-
-        .featured-gallery {
-            margin-bottom: 20px;
-        }
-
-        .featured-gallery .gallery-item img {
-            height: 450px;
-        }
-
-
-        /* =====================================
-           GALLERY CATEGORIES (FIXED & COMPLETED)
-        ====================================== */
-
-        .category-section {
-            background: var(--ice-green-pale);
-            padding: 75px 0;
-        }
-
-        .section-heading {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .section-heading span {
-            color: var(--ice-green-dark);
-            font-size: 13px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .section-heading h2 {
-            font-size: 36px;
-            margin: 8px 0;
-        }
-
-        .section-heading p {
-            color: var(--text);
-            max-width: 600px;
-            margin: auto;
-        }
-
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
-        }
-
-        .category-card {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 25px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: 0.3s ease;
-        }
-
-        .category-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--ice-green);
-        }
-
-        .category-card h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
-            color: var(--dark);
-        }
-
-        .category-card p {
-            font-size: 14px;
-            color: var(--text);
-        }
-
-        /* =====================================
-           RESPONSIVE MOBILE STYLES
-        ====================================== */
+        /* ==========================================================================
+           6. RESPONSIVE MEDIA BREAKPOINTS
+           ========================================================================== */
         @media (max-width: 992px) {
-            .gallery-grid, .category-grid {
+            .gallery-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
             }
         }
 
         @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .menu-btn { display: block; }
-            .top-content { flex-direction: column; text-align: center; gap: 5px; }
-            .gallery-grid, .category-grid { grid-template-columns: 1fr; }
-            .featured-gallery .gallery-item img { height: 300px; }
-        }
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
 
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-banner {
+                padding: 45px 0;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                justify-content: center;
+                gap: 20px;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- TOP BAR -->
-    <div class="top-bar">
-        <div class="container top-content">
-            <div>📍 Quality healthcare close to you</div>
-            <div>📞 Emergency Contact: +256 000 000000</div>
-        </div>
-    </div>
-
-    <!-- HEADER / NAVIGATION -->
+    <!-- STICKY SITE NAVIGATION -->
     <header>
         <div class="container navbar">
             <div class="logo">
-                <div class="logo-icon">+</div>
-                <div class="logo-text">
-                    <h1>Acacia Pharmacy</h1>
-                    <span>HEALTH & WELLNESS</span>
+                <div class="logo-icon"></div>
+                <!-- Clean styling matching the minimal green brand mark -->
+            </div>
+            <nav class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About Us</a>
+                <a href="#services">Services</a>
+                <a href="#branches">Branches</a>
+                <a href="#contact" class="btn-contact">Contact Us</a>
+            </nav>
+            <button class="mobile-menu-toggle" aria-label="Toggle Menu">☰</button>
+        </div>
+    </header>
+
+    <!-- BANNER CONTEXT AREA -->
+    <section class="hero-banner">
+        <div class="container">
+            <h1>Our Gallery</h1>
+            <p>Explore Our Modern Facilities and Services</p>
+        </div>
+    </section>
+
+    <!-- SIX CARD INTERACTIVE PHOTO CONTAINER -->
+    <main class="container">
+        <div class="gallery-grid">
+            
+            <!-- Card 1: Dispensary -->
+            <div class="gallery-card">
+                <div class="card-image-wrapper">
+                    <img src="https://unsplash.com" alt="Main Dispensary Counter Area">
+                </div>
+                <div class="card-title">Main Dispensary</div>
+            </div>
+
+            <!-- Card 2: Showcase -->
+            <div class="gallery-card">
+                <div class="card-image-wrapper">
+                    <img src="https://unsplash.com" alt="Product shelves display units">
+                </div>
+                <div class="card-title">Product Showcase</div>
+            </div>
+
